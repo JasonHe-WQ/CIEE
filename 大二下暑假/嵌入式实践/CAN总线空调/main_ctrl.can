@@ -1,0 +1,19 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+
+on sysvar var_ac::l_setting_temp
+{
+  $req_temp_db::l_setting_temp_db = @this;
+}
+on sysvar var_ac::r_setting_temp
+{
+  $req_temp_db::r_setting_temp_db = @this;
+}

@@ -1,0 +1,45 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+  message resp_temp_db res; 
+}
+on message resp_temp_db
+{
+  res = this;
+}
+
+check_resp(int l_temp,int r_temp)
+{
+  @var_ac::l_setting_temp = l_temp;
+  @var_ac::r_setting_temp = r_temp;
+  
+  testWaitForTimeout(2000);
+  if(l_temp == res.l_cur_temp_db-20&&r_temp == res.r_cur_temp_db-20)
+  {
+    testStepPass("check","[%.2x %.2x]",res.l_cur_temp_db,res.r_cur_temp_db);
+  }
+  else
+  {
+    testStepPass("check","[%.2x %.2x]",res.l_cur_temp_db,res.r_cur_temp_db);
+  }
+}
+
+testcase TC0001()
+{
+  testCaseTitle("1.0","Test4AC");
+  testStep("1","SetTemp2Zero");
+  check_resp(0,0);
+  testWaitForTimeout(500);
+   testStep("2","SetTemp2Zero");
+  check_resp(30,30);
+}
+
+void MainTest()
+{
+  TC0001();
+}

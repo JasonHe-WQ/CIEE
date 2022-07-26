@@ -1,0 +1,18 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+
+on message req_temp_db
+{
+  $resp_temp_db::l_cur_temp_db = this.l_setting_temp_db;
+  $resp_temp_db::r_cur_temp_db = this.r_setting_temp_db;
+  @var_ac::l_cur_temp = $resp_temp_db::l_cur_temp_db;
+  @var_ac::r_cur_temp = $resp_temp_db::r_cur_temp_db;
+}
