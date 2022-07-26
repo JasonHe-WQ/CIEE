@@ -1,0 +1,38 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+  message 0x501 msg1;
+
+}
+
+on start{
+  
+
+
+  msg1.dlc = 8;
+  msg1.byte(0) = 0xf0;
+  msg1.byte(1) = 0xf1;
+  msg1.byte(2) = 0xf2;
+  msg1.byte(3) = 0xf3;
+  msg1.byte(4) = 0xf4;
+  msg1.byte(5) = 0xf5;
+  msg1.byte(6) = 0xf6;
+  msg1.byte(7) = 0xf7;
+  
+}
+
+
+on message 0x500{
+output(msg1);
+}
+on sysvar SysVar::space1::v1{
+  if(@this==1){
+  msg1.byte(0) = 0xff;
+  msg1.byte(1) = 0xee;
+  }
+}

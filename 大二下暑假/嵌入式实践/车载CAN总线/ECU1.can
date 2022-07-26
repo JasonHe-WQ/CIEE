@@ -1,0 +1,38 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+  message 0x500 msg1;
+  mstimer timer1;
+    int count;
+}
+
+on start{
+  count = 0;
+  msg1.dlc = 8;
+  msg1.byte(0) = 0x00;
+  msg1.byte(1) = 0x01;
+  msg1.byte(2) = 0x02;
+  msg1.byte(3) = 0x03;
+  msg1.byte(4) = 0x04;
+  msg1.byte(5) = 0x05;
+  msg1.byte(6) = 0x06;
+  msg1.byte(7) = 0x07;
+  
+  setTimer(timer1,1500);
+}
+
+on timer timer1{
+output(msg1);
+  setTimer(timer1,1500);
+  count += 1;
+  if(count>20)
+  {
+    @sysvar::space1::v1 = 1;
+    count = 0;
+  }
+}
